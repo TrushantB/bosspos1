@@ -12,15 +12,20 @@ const Header=()=>{
       <NavLink className="nav-link" to="/" >Home</NavLink>
     </li>
     <li className="nav-item">
-      <NavLink className="nav-link" to="/product">Product</NavLink>
+      <NavLink className="nav-link" to="/producttype">Product Type</NavLink>
     </li>
      <li className="nav-item">
     <NavLink className="nav-link" to="/customer">Customer</NavLink>
     </li>
     <li className="nav-item">
-      <NavLink className="nav-link" to="/tax">Tax</NavLink>
+      <NavLink className="nav-link" to="/taxtype">Tax Type</NavLink>
     </li>
-   
+    <li className="nav-item">
+      <NavLink className="nav-link" to="/product">product</NavLink>
+    </li>
+    <li className="nav-item">
+      <NavLink className="nav-link" to="/tax">Tax </NavLink>
+    </li>
   </ul>
   
 </div>

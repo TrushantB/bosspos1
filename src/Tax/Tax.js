@@ -1,186 +1,123 @@
-import React, { Component } from 'react';
-import Modal from './Modal.js';
+import React from "react";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import Axios from 'axios';
-import { NavLink }  from 'react-router-dom';
+ class  Product extends React.Component {
+   constructor(props) {
+     super(props);
+     this.state={
+      dropdownitem:[],
+      arr:[],
+      aaa:[]
+     }
 
-class List extends Component {
-  constructor(props) {
-    super(props);
+     Axios.get('http://salty-badlands-70835.herokuapp.com/api/ProductType')
+     .then((response) => {
+       const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 );
+       result.map((item , index) =>{
+        // this.state.arr.push([item.Name])
 
-    this.replaceModalItem = this.replaceModalItem.bind(this);
-    this.saveModalDetails = this.saveModalDetails.bind(this);
-    this.condition = this.condition.bind(this);
-    this.state = {
-        search:'',
-        datalength:'',
-      requiredItem: null,
-     // brochure:[]
-      brochure: [
-        {
-          Id: "",
-          Name: "",
-         
-        }
-      ],
-      alldata: [
-        {
-          Id: "",
-          Name: "",
-         
-        }
-      ],
-      perticulerdata: [
-        {
-          Id: "",
-          Name: "",
-          Description:""
-         
-        }
-      ]
-    }
-    Axios.get('http://salty-badlands-70835.herokuapp.com/api/TaxTypes')
-        .then((response) => {
-          const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 );
-          this.setState({brochure:result})
-          this.setState({alldata:result})
-        }
-        )
-        //console.log(this.state.brochure.length)
-  }
-  
+         this.state.aaa.push(this.state.aaa[index]=[item.Name])
 
-  replaceModalItem(index) {
-    this.setState({
-      requiredItem: index
-    });
-    console.log(index)
-  }
 
-  saveModalDetails(item) {
-    const requiredItem = this.state.requiredItem;
-    let tempbrochure = this.state.brochure;
-    tempbrochure[requiredItem] = item;
-    this.setState({ brochure: tempbrochure });
-  }
-  addSaveModelDetails(item) {
-//console.log(item)
-  }
-
-  deleteItem(index,Id) {
-    let tempBrochure = this.state.brochure;
-    tempBrochure.splice(index, 1);
-    this.setState({ brochure: tempBrochure });   
-    Axios.delete('http://salty-badlands-70835.herokuapp.com/api/TaxType/'+Id)
-    .then()
-  }
-  
-  searchEngine(event) {
-    if(this.state.brochure.length > 0){
-    const searched=this.state.alldata.filter((match) =>{
+       })
+       
+       this.setState({dropdownitem:result})
      
+     }
+    
+     )
+     
+     let a=new Set(['sss','sss','c','d'])
+     console.log(a)
+    
+   }
+   render() {
+    const dropdownmenu = this.state.dropdownitem.map((item) => {
+      return (
+        <option  key={item.Id}><div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+        <label class="form-check-label" for="defaultCheck1">
+        {item.Name}
+        </label>
+        </div></option> 
         
       
-        return (
-                
-                match.Name.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1 
-                ) 
-        
-            })
-            this.setState({search:event.target.value})
-            this.setState({brochure:searched})
-  }
-  else {
-   alert ('No Data Found')
-    this.setState({brochure:this.state.alldata});
-  }
-  }
-  // addTax= () => {
-  //   return <NavLink to='/addtax'></NavLink>
-    
-    
-  // }
-  addModalItem() {
-    this.setState({datalength:this.state.brochure.length})
-    this.setState({requiredItem:this.state.brochure.length})
-//  this.setState({requiredItem:this.state.brochure.Name.length+1})
-  }
-  render() {    
- 
-    const brochure = this.state.brochure.map((item, index) => {
-      return (
-   
-        <tr key={index}>
-          <td>{index +1}</td>
-          <td>{item.Name}</td>
-          <td>{item.Description}</td>
-          <td>
-            <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-        
-        onClick={() => this.replaceModalItem(index)}>edit</button> {" "}
-            <button className="btn btn-danger" onClick={() => this.deleteItem(index,item.Id)}>remove</button>
-          </td>
-        </tr>
-            
-       
       )
     });
-    
-    const requiredItem = this.state.requiredItem;
-   
- 
-    return (
-      <div>
-        <div style={{ textAlign: "center" }}>
-          <h1>TAX </h1>
-          <h6>Bootstrap 4.0.0-beta.3</h6>
-        </div>
-        <div className="modal-body">
-            <form className="form-inline my-2 my-lg-0" style={{ position: 'absolute',top: -130 ,right: 0,left:1000 }}>
-                <input className="form-control mr-sm-2" type="search" placeholder="Search By Name..." onChange={this.searchEngine.bind(this)} />
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-         </div>
-         <button className="btn btn-success" data-toggle="modal" data-target="#exampleModal"
-        
-        onClick={() => this.addModalItem(this.state.brochure.length)}>ADD</button>
-        <table className="table table-striped">
-        <tr>
-        <td><b>Index</b></td>
-          <td><b>Name</b></td>
-          <td><b>Description</b></td>
-        </tr>
-          <tbody>
-            {brochure}
-          </tbody>
-        </table>
-        <div>
-  
-       {this.condition()}
-        </div>
-      </div>
-    );
-   
- 
-  }
-  condition= () => {
-    if(this.state.requiredItem < this.state.datalength && this.replaceModalItem) {
-     return <Modal
-       modalData={this.state.brochure[this.state.requiredItem]}
-        saveModalDetails={this.saveModalDetails}
-        />
+  return (
+    <MDBContainer>
+      < MDBRow>
+        <MDBCol md="6">
 
-    } else if(this.addModalItem) {
-      return <Modal
-        modalData={this.state.perticulerdata}
-         saveModalDetails={this.saveModalDetails}
-         /> 
-    } else {
-      return <div></div>
-    }
-  }
-  
+          <form>
+            <p className="h4 text-center mb-4">Add  Product</p>
+            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+              Product Name
+            </label>
+            <input
+              type="text"
+              id="defaultFormRegisterNameEx"
+              className="form-control"
+            />
+            <br />
+            <div >
+            <label htmlFor="defaultFormRegisterProductEx" className="grey-text">
+              Product Type
+           </label>
+             
+              <select className="browser-default custom-select">
+             <option  >
+             <div className="form-check form-check-inline">
+                <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+                <label className="form-check-label" for="inlineCheckbox1">1</label>
+            </div>
+            </option>
+                                
+                {dropdownmenu}
+              </select>
+              
+
+
+
+              
+      
+              </div>
+            <br />
+            <label
+              htmlFor="defaultFormRegisterSaleEx"
+              className="grey-text"
+            >
+             Sale price
+            </label>
+            <input
+              type="number"
+              id="defaultFormRegisterSaleEx"
+              className="form-control"
+            />
+            <br />
+            <label
+              htmlFor="defaultFormRegisterActualEx"
+              className="grey-text"
+            >
+              Actual Price
+            </label>
+            <input
+              type="number"
+              id="defaultFormRegisterActualEx"
+              className="form-control"
+            />
+            
+            <div className="text-center mt-4">
+              <MDBBtn color="unique" type="submit">
+                Register
+              </MDBBtn>
+            </div>
+          </form>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+  );
+   }
 }
 
-export default List;
-
-
+export default Product;

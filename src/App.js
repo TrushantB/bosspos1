@@ -6,6 +6,10 @@ import Product from './Product/Product'
 import Header from './Share/Header'
 import Customer from './Customer/Customer';
 import Tax from './Tax/Tax';
+import TaxType from './TaxType/TaxType';
+import ProductType from './ProductType/ProductType';
+
+
 
 import './App.css';
 
@@ -20,6 +24,8 @@ class App extends Component {
 <Route path="/product" component={Product}/>
 <Route path="/customer" component={Customer}/>
 <Route path="/tax" component={Tax}/>
+<Route path="/taxtype" component={TaxType}/>
+<Route path="/producttype" component={ProductType}/>
 </Switch>
 </div>
 </BrowserRouter>
