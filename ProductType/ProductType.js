@@ -113,7 +113,7 @@ class List extends Component {
    
         <tr key={index}>
           <td>{index +1}</td>
-          <td>{item.Name}</td>
+          <td>{item.productTypeName}</td>
           <td>{item.Description}</td>
           <td>
             <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
