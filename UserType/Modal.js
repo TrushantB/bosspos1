@@ -7,61 +7,60 @@ class Modal extends Component {
         super(props);
         this.handleSave = this.handleSave.bind(this);
         this.state = {
-            Id:props.modalData.Id || '',
-            productTypeName: props.modalData.productTypeName || '',
-            Description: props.modalData.Description || '',
+            id:props.modalData.id || '',
+            userTypeName: props.modalData.userTypeName || '',
+            userDescription: props.modalData.userDescription || '',
         }
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            Id:nextProps.modalData ? nextProps.modalData.Id : '',
-            productTypeName: nextProps.modalData ? nextProps.modalData.productTypeName : '',
-            Description:nextProps.modalData ? nextProps.modalData.Description : '',
+            id:nextProps.modalData ? nextProps.modalData.id : '',
+            userTypeName: nextProps.modalData ? nextProps.modalData.userTypeName : '',
+            userDescription:nextProps.modalData ? nextProps.modalData.userDescription : '',
         });
     } 
 
-    nameHandler(e) {
-        this.setState({ productTypeName: e.target.value });        
+    userTypeNameHandler(e) {
+        this.setState({ userTypeName: e.target.value });        
     }
 
-    descriptionHandler(e) {
-        this.setState({ Description: e.target.value });
+    userDescriptionHandler(e) {
+        this.setState({ userDescription: e.target.value });
     }
     newhandleSave()  {
       
           const item = this.state;
           this.props.saveModalDetails(item)
-          Axios.post('http://salty-badlands-70835.herokuapp.com/api/ProductType',({
-            
-              "productTypeName":this.state.productTypeName,
-              "description":this.state.Description
-          })).then(console.log(this.state.productTypeName))
+          Axios.post('http://localhost:3005/userType',({
+              "id":'',
+              "userTypeName":this.state.userTypeName,
+              "userDescription":this.state.userDescription,
+              "IsDeleted": 0
+          })).then(console.log("inserted success"))
           .catch(err =>{
               console.log('faild:',err)
 
           })
-          
-          
-          
+       
       }
 
     handleSave() {
      
         const item = this.state;
         this.props.saveModalDetails(item)
-        Axios.put('http://salty-badlands-70835.herokuapp.com/api/TaxType/1',({
-            
-            "productTypeName":this.state.productTypeName,
-            "description":this.state.Description
+        Axios.put('http://localhost:3005/userType/'+this.state.id,({
+              "id":'',
+              "userTypeName":this.state.userTypeName,
+              "userDescription":this.state.userDescription,
+              "IsDeleted": 0
         }))
-        .then()
+        .then(console.log("update success"))
         
         
     }
 
     render() {
-        console.log(this.state.Id)
         return (
             <div>
                
@@ -69,7 +68,7 @@ class Modal extends Component {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Edit Tax</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">User Type</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -82,13 +81,15 @@ class Modal extends Component {
                             <div class="form-group row">
                                 <label for="staticEmail" class="col-sm-4 col-form-label">Name:</label>
                                 <div class="col-sm-8">
-                                    <input value={this.state.productTypeName} onChange={(e) => this.nameHandler(e)} />
+                                    <input value={this.state.userTypeName} 
+                                    onChange={(e) => this.userTypeNameHandler(e)} />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-4 col-form-label">Description:</label>
                                 <div class="col-sm-8">
-                                <input value={this.state.Description} onChange={(e) => this.descriptionHandler(e)} />
+                                <input value={this.state.userDescription} 
+                                onChange={(e) => this.userDescriptionHandler(e)} />
                                 </div>
                             </div>
                             </form>                        
@@ -98,7 +99,7 @@ class Modal extends Component {
                        
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                          {this.state.Id ? <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => { this.handleSave() }}>Save changes</button>
+                          {this.state.id ? <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => { this.handleSave() }}>Save changes</button>
                           :
                           <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={() => { this.newhandleSave() }}>Add new</button>
                           }
