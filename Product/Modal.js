@@ -22,7 +22,7 @@ class Modal extends Component {
         componentDidMount() {
             axios.get('http://localhost:3005/productType')
             .then((response) => {
-            const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 )
+            const result = response.data.filter(deleteddata => deleteddata.IsDeleted === 0 )
             this.setState({dropdownitem:result})
             } 
             )
@@ -63,9 +63,7 @@ class Modal extends Component {
                 salePriceHandler(e) {
                     this.setState({ salePrice: e.target.value });
                 }
-                productDescriptionHandler(e) {
-                    this.setState({ productDescription: e.target.value });
-                }
+               
     newhandleSave(e) {      
             const items={
              "id":'',
@@ -123,7 +121,7 @@ class Modal extends Component {
     }
     TaxAssign = (e) => {
         e.preventDefault()
-        if(e.target.checked==true) {
+        if(e.target.checked===true) {
         this.state.tax.push(e.target.id)
         this.state.taxes.push(e.target.name)
         const taxValue= Number(this.state.actualPrice*e.target.value)/100
@@ -131,7 +129,7 @@ class Modal extends Component {
         this.setState({salePrice:calculation})
         }else {
           for(let i=0;i<this.state.taxes.length;i++) {
-            if(this.state.tax[i]==e.target.id) {
+            if(this.state.tax[i]===e.target.id) {
               this.state.taxes.splice(i,1);
               this.state.tax.splice(i,1);
             }
@@ -144,15 +142,15 @@ class Modal extends Component {
    
     render() {
        console.log(this.state.forEditTax)
-       const taxAssign= this.state. taxAssign.map((item) => {
+       const taxAssign = this.state.taxAssign.map((item) => {
           
             return (
               
                    <li className="checkbox form-group" key={item.id}>
-                              <input type="checkbox" id={item.id} name={item.taxName} value={item.taxValue} 
+                              <label className="tax-name"> <input type="checkbox" id={item.id} name={item.taxName} value={item.taxValue} 
                               checked={this.state.forEditTax ? this.state.forEditTax.includes(String(item.id)) : false}
                                 onChange={(e) => {this.TaxAssign(e)}}/>
-                              <label className="tax-name"><b>{item.taxName}</b></label>
+                              <b>{item.taxName}</b></label>
                    </li>
               
             )
@@ -213,7 +211,7 @@ class Modal extends Component {
                                     <label for="staticEmail" className="col-sm-4 col-form-label">Taxes:</label>
                                     <div className="col-sm-8">
                                         <input  type="text" id="dLabel" placeholder="Assign a taxes here"    
-                                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                                              data-toggle="dropdown" aria-haspopup="false" />
                                          <ul className="dropdown-menu" aria-labelledby="dLabel">
                                                 {taxAssign}                      
                                          </ul>

@@ -22,7 +22,7 @@ class List extends Component {
     }
     Axios.get('http://localhost:3005/productType')
         .then((response) => {
-          const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 );
+          const result = response.data.filter(deleteddata => deleteddata.IsDeleted === 0 );
           this.setState({brochure:result})
           this.setState({alldata:result})
         }
@@ -65,7 +65,7 @@ class List extends Component {
       
         return (
                 
-                match.productTypeName.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1 
+                match.productTypeName.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1 
                 ) 
         
             })

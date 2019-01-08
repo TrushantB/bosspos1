@@ -20,7 +20,7 @@ class UserType extends Component {
     }
     Axios.get('http://localhost:3005/userType')
         .then((response) => {
-          const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 );
+          const result = response.data.filter(deleteddata => deleteddata.IsDeleted === 0 );
           this.setState({brochure:result})
           this.setState({alldata:result})
           console.log(result)
@@ -63,7 +63,7 @@ class UserType extends Component {
       
         return (
                 
-                match.userTypeName.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1 
+                match.userTypeName.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1 
                 ) 
         
             })

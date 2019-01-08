@@ -19,7 +19,7 @@ class Tax extends Component {
     }
     Axios.get('http://localhost:3005/tax')
         .then((response) => {
-          const result = response.data.filter(deleteddata => deleteddata.IsDeleted ==0 );
+          const result = response.data.filter(deleteddata => deleteddata.IsDeleted ===0 );
           this.setState({brochure:result})
           this.setState({alldata:result})
         }
@@ -53,7 +53,7 @@ class Tax extends Component {
     if(this.state.brochure.length > 0){
     const searched=this.state.alldata.filter((match) =>{
       return (
-               match.taxName.toLowerCase().indexOf(event.target.value.toLowerCase()) != -1 
+               match.taxName.toLowerCase().indexOf(event.target.value.toLowerCase()) !== -1 
              ) 
         
             })
