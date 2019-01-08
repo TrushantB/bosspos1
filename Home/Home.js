@@ -21,16 +21,12 @@ axios.get('http://localhost:3005/product')
     }
     perticulerSelect=(e) => {
     e.preventDefault();
-    this.state.temp.push([{
+    this.state.temp.push({
         name:e.target.elements.product.name,
         price:e.target.elements.product.value
-    }])
+    })
   this.setState({productName:this.state.temp}) 
 
-    // e.target.elements.product.name)
-    // this.setState({productName:this.state.temp})
-    // a.push(e.target.elements.product.value)
-    //this.setState({productValue:a})
 }
 render() { 
         const ptoducts=this.state.productData.map((item) => {

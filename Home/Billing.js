@@ -10,22 +10,12 @@ class Billing extends React.Component {
        
     }
     render() {
-        var all=[]
+       
         if(this.props.productName) {
-            this.props.productName.map((item) => {
-                all.push(item)
-                
-            })
-           // this.setState({productName:all})
-            console.log(all)
-        
-         }
-        // console.log(this.state.productName)
-        if(all.length > 0) {
-       var realBill= all.map((item,index) => {
+       var realBill= this.props.productName.map((item,index) => {     
          return (
                <div key={index} >
-                    <h4 >{item[index].name} </h4>  <hr />
+                    <h4 >{item.name} </h4><h5>{item.price}</h5>  <hr />
                </div>
          )  
        })
