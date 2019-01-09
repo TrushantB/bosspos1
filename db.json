@@ -1,19 +1,197 @@
 {
-  "posts": [
+  "product": [
     {
-      "id": 1,
-      "name": "coffe",
-      "description": "liquid"
+      "id": 4,
+      "productName": "wada-pav",
+      "productDescription": "no one",
+      "productTypeId": "31",
+      "actualPrice": 333,
+      "salePrice": 342.657,
+      "taxes": [
+        "S GST",
+        "C GST"
+      ],
+      "tax": [
+        "2",
+        "1"
+      ],
+      "IsDeleted": 0
+    },
+    {
+      "id": 5,
+      "productName": "coffee ",
+      "productDescription": "hot",
+      "productTypeId": "31",
+      "actualPrice": 32,
+      "salePrice": 35.072,
+      "taxes": [
+        "S GST",
+        "C GST",
+        "N GST"
+      ],
+      "tax": [
+        "2",
+        "1",
+        "3"
+      ],
+      "IsDeleted": 0
+    },
+    {
+      "id": 6,
+      "productName": "masala -dudh",
+      "productDescription": "milk",
+      "productTypeId": "31",
+      "actualPrice": 100,
+      "salePrice": 100,
+      "taxes": [
+        "C GST"
+      ],
+      "tax": [
+        "1"
+      ],
+      "IsDeleted": 0
+    },
+    {
+      "id": 7,
+      "productName": "thumbs-up",
+      "productDescription": "cold",
+      "productTypeId": "41",
+      "actualPrice": 1010,
+      "salePrice": 1020.605,
+      "taxes": [
+        "C GST",
+        "S GST"
+      ],
+      "tax": [
+        "1",
+        "2"
+      ],
+      "IsDeleted": 0
     }
   ],
-  "comments": [
+  "tax": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "taxName": "C GST",
+      "taxDescription": "Country tax",
+      "taxValue": "0.4",
+      "IsDeleted": 0,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "taxName": "S GST",
+      "taxValue": 1.05,
+      "taxDescription": "State tax",
+      "IsDeleted": 0
+    },
+    {
+      "taxName": "N GST",
+      "taxDescription": "National",
+      "taxValue": "9.2",
+      "IsDeleted": 0,
+      "id": 3
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "userType": [
+    {
+      "id": 1,
+      "userTypeName": "Admin",
+      "userDescription": "Director",
+      "IsDeleted": 0
+    },
+    {
+      "id": 2,
+      "userTypeName": "d",
+      "userDescription": "f",
+      "IsDeleted": 0
+    }
+  ],
+  "paymentType": [
+    {
+      "id": 1,
+      "paymentTypeName": "Credit Card",
+      "paymentDescription": "Card Payments",
+      "IsDeleted": 0
+    },
+    {
+      "id": 2,
+      "paymentTypeName": "cash",
+      "paymentDescription": "in-hand",
+      "IsDeleted": 0
+    }
+  ],
+  "productType": [
+    {
+      "Id": 1,
+      "productTypeName": "Cold-drinks",
+      "Description": "asd",
+      "IsDeleted": 0,
+      "CreatedBy": "",
+      "CreatedDt": null,
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "",
+      "DeletedDt": null
+    },
+    {
+      "Id": 11,
+      "productTypeName": "Foodies",
+      "Description": "test",
+      "IsDeleted": 1,
+      "CreatedBy": "Ankush",
+      "CreatedDt": "2018-11-12 00:00:00",
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "Ankush",
+      "DeletedDt": "2018-12-07 00:00:00"
+    },
+    {
+      "Id": 21,
+      "productTypeName": "Fast-Food",
+      "Description": "test",
+      "IsDeleted": 0,
+      "CreatedBy": "Ankush",
+      "CreatedDt": "2018-11-12 00:00:00",
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "",
+      "DeletedDt": null
+    },
+    {
+      "Id": 31,
+      "productTypeName": "Hot-Drink",
+      "Description": "test",
+      "IsDeleted": 0,
+      "CreatedBy": "Ankush",
+      "CreatedDt": "2018-11-12 00:00:00",
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "",
+      "DeletedDt": null
+    },
+    {
+      "Id": 41,
+      "productTypeName": "Soft-Drink",
+      "Description": "test",
+      "IsDeleted": 0,
+      "CreatedBy": "Ankush",
+      "CreatedDt": "2018-11-12 00:00:00",
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "",
+      "DeletedDt": null
+    },
+    {
+      "Id": 51,
+      "productTypeName": "Foodies",
+      "Description": "test",
+      "IsDeleted": 1,
+      "CreatedBy": "Ankush",
+      "CreatedDt": "2018-11-12 00:00:00",
+      "UpdatedBy": "",
+      "UpdatedDt": null,
+      "DeletedBy": "",
+      "DeletedDt": null
+    }
+  ]
 }
