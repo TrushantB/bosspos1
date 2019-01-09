@@ -85,9 +85,9 @@
       "IsDeleted": 0
     },
     {
-      "taxName": "N GST",
-      "taxDescription": "National",
-      "taxValue": "9.2",
+      "taxName": "I GST",
+      "taxDescription": "out of state",
+      "taxValue": "8.0",
       "IsDeleted": 0,
       "id": 3
     }
