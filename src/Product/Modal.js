@@ -6,7 +6,6 @@ class Modal extends Component {
         this.handleSave = this.handleSave.bind(this);
         this.state = {
             tax:[],
-            taxes:[],
             taxAssign:[],
             dropdownitem:[],
             Id:props.modalData.Id || '',
@@ -72,7 +71,6 @@ class Modal extends Component {
              "productTypeId":this.state.productTypeId,
              "actualPrice":this.state.actualPrice,
              "salePrice":this.state.salePrice,
-             "taxes":this.state.taxes,
              "tax":this.state.tax,
              "IsDeleted": 0
            }
@@ -89,7 +87,6 @@ class Modal extends Component {
             productTypeId: this.state.productTypeId,
             actualPrice:this.state.actualPrice,
             salePrice:this.state.salePrice,
-            taxes:this.state.taxes,
           };
           this.props.saveModalDetails(item)
       }
@@ -102,7 +99,6 @@ class Modal extends Component {
             "productTypeId":this.state.productTypeId,
             "actualPrice":this.state.actualPrice,
             "salePrice":this.state.salePrice,
-            "taxes":this.state.taxes,
             "tax":this.state.tax,
             "IsDeleted": 0
           }
@@ -123,14 +119,12 @@ class Modal extends Component {
        // e.preventDefault()
         if(e.target.checked===true) {
         this.state.tax.push(e.target.id)
-        this.state.taxes.push(e.target.name)
         const taxValue= Number(this.state.actualPrice*e.target.value)/100
         const salePrice=Number(this.state.salePrice) + Number(taxValue);
         this.setState({salePrice})
         }else {
-          for(let i=0;i<this.state.taxes.length;i++) {
+          for(let i=0;i<this.state.tax.length;i++) {
             if(this.state.tax[i]===e.target.id) {
-              this.state.taxes.splice(i,1);
               this.state.tax.splice(i,1);
             }
           }
